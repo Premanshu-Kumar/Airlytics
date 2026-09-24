@@ -1350,8 +1350,10 @@ completed.
 
 ------------------------------------------------------------------------
 
-# 📜 License
+# 📄 License
 
-This project is intended for academic and educational purposes. Dataset
-usage is subject to the license and terms of the original dataset
-source.
+This project is licensed under the **Apache License 2.0**.
+
+See `LICENSE` for details.
+
+---
