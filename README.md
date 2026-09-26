@@ -327,20 +327,16 @@ observed airfare.
 
 # 🔎 Dataset Source
 
-The final implementation will document:
+The implemented analysis documents:
 
--   Dataset name
--   Original source
--   Source URL
--   Dataset version/date
--   Number of rows
--   Number of columns
--   Feature descriptions
--   Target variable
--   Dataset license
+-   Dataset name, publisher and source URL
+-   Dataset version and download date
+-   Number of rows and columns
+-   Feature descriptions and target variable
+-   Dataset license as listed by the publisher
 -   Data collection limitations
 
-The exact source used in the final implementation will be recorded in:
+The exact source used in the analysis is recorded in:
 
 ``` text
 data/README.md
@@ -348,6 +344,19 @@ data/README.md
 
 Only datasets permitted for the intended academic/research use will be
 used.
+
+## Implemented Phases 1–5
+
+Phases 1–5 are completed against the labeled EaseMyTrip-derived dataset. The
+dataset source, CC0 license as listed by its publisher, schema, and limitations
+are documented in [`data/README.md`](data/README.md). The reproducible cleaning,
+EDA, statistical tests, generated charts, and findings are in
+[`outputs/phase1_5/phase1_5_report.md`](outputs/phase1_5/phase1_5_report.md);
+rerun them with `python scripts/phase1_5_analysis.py`.
+
+The source does not provide booking dates or explicitly identify the currency.
+The analysis therefore excludes booking-window conclusions and reports fares
+in source units rather than asserting a currency.
 
 ------------------------------------------------------------------------
 
@@ -1259,15 +1268,15 @@ Potential future improvements:
 
 # 📌 Success Checklist
 
--   [ ] Problem statement completed
--   [ ] Real-world relevance documented
--   [ ] Objectives defined
--   [ ] Dataset source documented
--   [ ] Dataset structure documented
--   [ ] Data cleaning completed
+-   [x] Problem statement completed
+-   [x] Real-world relevance documented
+-   [x] Objectives defined
+-   [x] Dataset source documented
+-   [x] Dataset structure documented
+-   [x] Data cleaning completed
 -   [ ] Data transformation completed
--   [ ] EDA completed
--   [ ] Statistical analysis completed
+-   [x] EDA completed
+-   [x] Statistical analysis completed
 -   [ ] Feature engineering completed
 -   [ ] Multiple ML models trained
 -   [ ] MAE calculated
@@ -1342,11 +1351,10 @@ B.Tech Computer Science Engineering --- Data Science
 
 # ⭐ Project Status
 
-**Status:** 🚧 Prototype / In Development
+**Status:** 🚧 In Development — Phases 1–5 complete
 
-The repository will be updated progressively as dataset collection,
-preprocessing, modeling, evaluation and application development are
-completed.
+Phases 6–12 (feature engineering, modeling, evaluation, explainability,
+application, testing, and final submission) remain in progress.
 
 ------------------------------------------------------------------------
 
