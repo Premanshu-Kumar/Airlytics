@@ -345,7 +345,7 @@ data/README.md
 Only datasets permitted for the intended academic/research use will be
 used.
 
-## Implemented Phases 1–5
+## Implemented Phases 1–7
 
 Phases 1–5 are completed against the labeled EaseMyTrip-derived dataset. The
 dataset source, CC0 license as listed by its publisher, schema, and limitations
@@ -357,6 +357,23 @@ rerun them with `python scripts/phase1_5_analysis.py`.
 The source does not provide booking dates or explicitly identify the currency.
 The analysis therefore excludes booking-window conclusions and reports fares
 in source units rather than asserting a currency.
+
+Phases 6–7 are also implemented. Install the modeling dependencies and run
+feature engineering followed by model development:
+
+```powershell
+python -m pip install -r requirements-modeling.txt
+python scripts/phase6_feature_engineering.py
+python scripts/phase7_model_development.py
+```
+
+Phase 6 writes `outputs/phase6/engineered_fares.csv` and its feature report.
+Phase 7 trains Linear Regression, Random Forest, and XGBoost pipelines and
+writes the fitted artifacts and development-validation results to
+`outputs/phase7/`. Booking-window features are excluded because no booking date
+is present in the source. The fare target and target-derived outlier flag are
+not used as model inputs; scaling and categorical encoding are fitted within
+each training pipeline.
 
 ------------------------------------------------------------------------
 
@@ -553,7 +570,7 @@ The selected method will depend on variable type and distribution.
 
 # 🤖 Machine Learning Models
 
-Airlytics will compare multiple regression algorithms.
+Airlytics trains and compares multiple regression algorithms.
 
 ## 1. Linear Regression
 
@@ -571,14 +588,14 @@ A gradient-boosting model designed for structured/tabular data.
 
 Useful for datasets containing many categorical variables.
 
-The final model will be selected from actual validation/evaluation
-results.
+Initial candidate models are trained on the Phase 6 features. Final model
+selection is deferred until the broader Phase 8 evaluation.
 
 ------------------------------------------------------------------------
 
 # 🧪 Training Strategy
 
-A typical initial split may be:
+The Phase 7 development run uses a reproducible random split:
 
 ``` text
 Training → 80%
@@ -613,17 +630,18 @@ Measures the proportion of target variation explained by the model.
 
 # 🏆 Model Comparison
 
-Actual results will be recorded after training.
+The following are development-validation results from the fixed 80/20 split
+(random state 42), in fare source units. They are preliminary and are not the
+final Phase 8 evaluation.
 
-  Model                 MAE   RMSE    R²
-  ------------------- ----- ------ -----
-  Linear Regression     TBD    TBD   TBD
-  Random Forest         TBD    TBD   TBD
-  XGBoost               TBD    TBD   TBD
-  CatBoost              TBD    TBD   TBD
+| Model | MAE | RMSE | R² |
+|---|---:|---:|---:|
+| Linear Regression | 1,514.45 | 2,367.78 | 0.7311 |
+| Random Forest | 640.33 | 1,430.08 | 0.9019 |
+| XGBoost | 842.43 | 1,498.44 | 0.8923 |
 
-> **TBD values will be replaced with actual experimental results. No
-> fabricated metrics will be used.**
+The Random Forest has the lowest MAE on this split; this is not a final model
+selection decision. CatBoost remains optional and was not trained.
 
 ------------------------------------------------------------------------
 
@@ -1274,15 +1292,15 @@ Potential future improvements:
 -   [x] Dataset source documented
 -   [x] Dataset structure documented
 -   [x] Data cleaning completed
--   [ ] Data transformation completed
+-   [x] Data transformation completed
 -   [x] EDA completed
 -   [x] Statistical analysis completed
--   [ ] Feature engineering completed
--   [ ] Multiple ML models trained
--   [ ] MAE calculated
--   [ ] RMSE calculated
--   [ ] R² calculated
--   [ ] Model comparison completed
+-   [x] Feature engineering completed
+-   [x] Multiple ML models trained
+-   [x] MAE calculated
+-   [x] RMSE calculated
+-   [x] R² calculated
+-   [x] Initial model comparison completed
 -   [ ] Feature importance completed
 -   [ ] SHAP explanation completed
 -   [ ] Interactive estimator completed
