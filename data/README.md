@@ -12,7 +12,7 @@
 The two original workbooks are preserved in `data/raw/`. The analysis uses
 `Data_Train.xlsx`, which contains the observed `Price` target. The companion
 `Test_set.xlsx` contains 2,671 rows and no target, so it is retained for source
-completeness but excluded from the Phase 1–5 fare analysis.
+completeness but excluded from fare analysis and model training.
 
 ## Schema
 
@@ -45,5 +45,10 @@ labels and is not used to compute statistics.
 
 See `scripts/phase1_5_analysis.py` and
 [`outputs/phase1_5/phase1_5_report.md`](../outputs/phase1_5/phase1_5_report.md).
+Phases 6–7 use the cleaned training data to engineer prediction-time features
+and train three regression candidates. Booking-window effects cannot be
+modeled because the source has no booking-date field; see the generated
+[`Phase 6 report`](../outputs/phase6/phase6_report.md) and
+[`Phase 7 report`](../outputs/phase7/phase7_report.md).
 The raw workbooks are included under the source's CC0 designation; retain this
 source and license attribution when reusing them.
