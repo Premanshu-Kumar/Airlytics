@@ -345,7 +345,7 @@ data/README.md
 Only datasets permitted for the intended academic/research use will be
 used.
 
-## Implemented Phases 1–7
+## Implemented Phases 1–8
 
 Phases 1–5 are completed against the labeled EaseMyTrip-derived dataset. The
 dataset source, CC0 license as listed by its publisher, schema, and limitations
@@ -365,6 +365,7 @@ feature engineering followed by model development:
 python -m pip install -r requirements-modeling.txt
 python scripts/phase6_feature_engineering.py
 python scripts/phase7_model_development.py
+python scripts/phase8_model_evaluation.py
 ```
 
 Phase 6 writes `outputs/phase6/engineered_fares.csv` and its feature report.
@@ -374,6 +375,12 @@ writes the fitted artifacts and development-validation results to
 is present in the source. The fare target and target-derived outlier flag are
 not used as model inputs; scaling and categorical encoding are fitted within
 each training pipeline.
+
+Phase 8 ranks candidates using five-fold cross-validation on the training
+partition, reports MAE, RMSE, and R² on a separate held-out partition, and
+refits the selected candidate on all labeled observations for later phases.
+Evaluation metrics, predictions, diagnostics, report, and selected model are
+written to `outputs/phase8/`.
 
 ------------------------------------------------------------------------
 
@@ -602,7 +609,8 @@ Training → 80%
 Testing  → 20%
 ```
 
-Cross-validation may be used during model selection.
+Phase 8 uses five-fold shuffled cross-validation on the training partition
+for candidate selection and reserves the held-out partition for final metrics.
 
 If the dataset has meaningful temporal ordering, a time-aware validation
 strategy may be considered instead of randomly mixing future
@@ -630,9 +638,9 @@ Measures the proportion of target variation explained by the model.
 
 # 🏆 Model Comparison
 
-The following are development-validation results from the fixed 80/20 split
-(random state 42), in fare source units. They are preliminary and are not the
-final Phase 8 evaluation.
+The following are Phase 7 development-validation results from the fixed 80/20
+split (random state 42), in fare source units. They are preliminary; Phase 8
+cross-validation and holdout metrics are reported separately.
 
 | Model | MAE | RMSE | R² |
 |---|---:|---:|---:|
@@ -991,11 +999,11 @@ Airlytics/
 
 ## Phase 8 --- Model Evaluation
 
+-   Cross-validation
 -   MAE
 -   RMSE
 -   R²
--   Cross-validation
--   Model comparison
+-   Holdout comparison
 
 ## Phase 9 --- Explainable AI
 
@@ -1300,7 +1308,8 @@ Potential future improvements:
 -   [x] MAE calculated
 -   [x] RMSE calculated
 -   [x] R² calculated
--   [x] Initial model comparison completed
+-   [x] Cross-validation completed
+-   [x] Model evaluation and comparison completed
 -   [ ] Feature importance completed
 -   [ ] SHAP explanation completed
 -   [ ] Interactive estimator completed

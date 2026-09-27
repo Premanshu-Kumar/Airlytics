@@ -1,4 +1,6 @@
 import unittest
+import tempfile
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -6,6 +8,7 @@ from sklearn.linear_model import LinearRegression
 
 from scripts.phase6_feature_engineering import FEATURE_COLUMNS, TARGET_COLUMN, engineer_features
 from scripts.phase7_model_development import make_pipeline
+from scripts.phase8_model_evaluation import evaluate_models
 
 
 def cleaned_rows():
@@ -54,6 +57,34 @@ class Phase6FeatureEngineeringTests(unittest.TestCase):
 
         self.assertEqual(len(prediction), 1)
         self.assertTrue(np.isfinite(prediction).all())
+
+    def test_phase8_writes_holdout_metrics_diagnostics_and_full_data_model(self):
+        base = cleaned_rows()
+        data = engineer_features(pd.concat([base] * 8, ignore_index=True))
+        data[TARGET_COLUMN] += np.arange(len(data)) * 13
+        with tempfile.TemporaryDirectory() as temporary_dir:
+            output_dir = Path(temporary_dir)
+            results = evaluate_models(
+                data,
+                output_dir,
+                test_size=0.25,
+                cv_folds=2,
+                candidates={"Linear Regression": make_pipeline(LinearRegression())},
+            )
+
+            self.assertEqual(results.loc[0, "Model"], "Linear Regression")
+            self.assertGreater(results.loc[0, "CV_MAE_Mean"], 0)
+            self.assertTrue((output_dir / "evaluation_metrics.csv").is_file())
+            self.assertTrue((output_dir / "selected_model_holdout_predictions.csv").is_file())
+            self.assertTrue((output_dir / "models" / "selected_model.joblib").is_file())
+            self.assertTrue((output_dir / "actual_vs_predicted.png").is_file())
+            self.assertTrue((output_dir / "residual_distribution.png").is_file())
+            self.assertTrue((output_dir / "residuals_vs_predicted.png").is_file())
+
+    def test_phase8_rejects_invalid_fold_count(self):
+        data = engineer_features(pd.concat([cleaned_rows()] * 8, ignore_index=True))
+        with self.assertRaisesRegex(ValueError, "--cv-folds must be at least 2"):
+            evaluate_models(data, Path("unused"), cv_folds=1)
 
 
 if __name__ == "__main__":
