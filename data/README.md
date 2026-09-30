@@ -53,5 +53,7 @@ modeled because the source has no booking-date field; see the generated
 Phase 8 cross-validates the candidates, evaluates a held-out partition, and
 reports the final comparison in
 [`outputs/phase8/phase8_report.md`](../outputs/phase8/phase8_report.md).
+Phase 9 produces global and individual SHAP explanations for the selected
+model in [`outputs/phase9/phase9_report.md`](../outputs/phase9/phase9_report.md).
 The raw workbooks are included under the source's CC0 designation; retain this
 source and license attribution when reusing them.

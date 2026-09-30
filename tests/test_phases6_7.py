@@ -2,13 +2,16 @@ import unittest
 import tempfile
 from pathlib import Path
 
+import joblib
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 
 from scripts.phase6_feature_engineering import FEATURE_COLUMNS, TARGET_COLUMN, engineer_features
 from scripts.phase7_model_development import make_pipeline
 from scripts.phase8_model_evaluation import evaluate_models
+from scripts.phase9_explainability import explain_model
 
 
 def cleaned_rows():
@@ -85,6 +88,58 @@ class Phase6FeatureEngineeringTests(unittest.TestCase):
         data = engineer_features(pd.concat([cleaned_rows()] * 8, ignore_index=True))
         with self.assertRaisesRegex(ValueError, "--cv-folds must be at least 2"):
             evaluate_models(data, Path("unused"), cv_folds=1)
+
+    def test_phase9_writes_global_and_individual_shap_artifacts(self):
+        data = engineer_features(pd.concat([cleaned_rows()] * 10, ignore_index=True))
+        data[TARGET_COLUMN] += np.arange(len(data)) * 17
+        pipeline = make_pipeline(
+            RandomForestRegressor(n_estimators=8, max_depth=3, random_state=42)
+        )
+        pipeline.fit(data[FEATURE_COLUMNS], data[TARGET_COLUMN])
+        with tempfile.TemporaryDirectory() as temporary_dir:
+            root = Path(temporary_dir)
+            model_path = root / "model.joblib"
+            output_dir = root / "explanations"
+            joblib.dump(
+                {
+                    "model_name": "Random Forest",
+                    "pipeline": pipeline,
+                    "feature_columns": FEATURE_COLUMNS,
+                    "target_column": TARGET_COLUMN,
+                    "training_rows": len(data),
+                },
+                model_path,
+            )
+
+            importance = explain_model(
+                data,
+                model_path=model_path,
+                output_dir=output_dir,
+                row_index=2,
+                max_samples=8,
+            )
+
+            self.assertIn(importance.iloc[0]["Feature"], FEATURE_COLUMNS)
+            self.assertTrue(importance["Mean_Absolute_SHAP"].is_monotonic_decreasing)
+            self.assertTrue((output_dir / "global_feature_importance.csv").is_file())
+            self.assertTrue((output_dir / "global_feature_importance.png").is_file())
+            self.assertTrue((output_dir / "shap_global_summary.png").is_file())
+            self.assertTrue((output_dir / "individual_shap_values.csv").is_file())
+            self.assertTrue((output_dir / "shap_individual_prediction.png").is_file())
+            self.assertTrue((output_dir / "phase9_report.md").is_file())
+            contributions = pd.read_csv(output_dir / "individual_shap_values.csv")
+            self.assertEqual(len(contributions), len(FEATURE_COLUMNS))
+            self.assertAlmostEqual(
+                contributions["SHAP_Contribution"].sum()
+                + contributions["Model_Baseline"].iloc[0],
+                contributions["Model_Prediction"].iloc[0],
+                places=2,
+            )
+
+    def test_phase9_rejects_out_of_range_example_index(self):
+        data = engineer_features(pd.concat([cleaned_rows()] * 2, ignore_index=True))
+        with self.assertRaisesRegex(ValueError, "--row-index must be between"):
+            explain_model(data, Path("unused"), Path("unused"), row_index=len(data))
 
 
 if __name__ == "__main__":
