@@ -345,7 +345,7 @@ data/README.md
 Only datasets permitted for the intended academic/research use will be
 used.
 
-## Implemented Phases 1–9
+## Implemented Phases 1–10
 
 Phases 1–5 are completed against the labeled EaseMyTrip-derived dataset. The
 dataset source, CC0 license as listed by its publisher, schema, and limitations
@@ -390,6 +390,19 @@ prediction waterfall with additive contributions to `outputs/phase9/`. The
 default local example is source row 0; use `--row-index` to select another
 engineered row. Because the selected model is refit on all labeled rows, this
 local explanation is illustrative rather than an independent test example.
+
+Phase 10 provides a Streamlit airfare estimator using the selected Phase 8
+model, with routes and additional-information categories taken from the
+training data, input consistency checks, and per-estimate SHAP explanations.
+Install the app dependencies and launch it with:
+
+```powershell
+python -m pip install -r requirements-app.txt
+streamlit run app/app.py
+```
+
+The fare output uses source units, and estimates are limited to patterns
+learned from historical 2019 observations.
 
 ------------------------------------------------------------------------
 
@@ -1024,11 +1037,11 @@ Airlytics/
 
 ## Phase 10 --- Application
 
--   Streamlit interface
--   Input validation
--   Prediction pipeline
--   Prediction display
--   Explanation display
+-   Streamlit interface with training-data route/category options
+-   Flight route and stop-count validation
+-   Prediction through the fitted Phase 8 pipeline
+-   Prediction and user-input display
+-   Individual SHAP explanations and global feature reference
 
 ## Phase 11 --- Testing
 
@@ -1324,7 +1337,7 @@ Potential future improvements:
 -   [x] Feature importance completed
 -   [x] Global SHAP explanation completed
 -   [x] Individual SHAP explanation completed
--   [ ] Interactive estimator completed
+-   [x] Interactive estimator completed
 -   [ ] Testing completed
 -   [ ] Final report completed
 -   [ ] GitHub repository completed
