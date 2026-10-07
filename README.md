@@ -404,6 +404,22 @@ streamlit run app/app.py
 The fare output uses source units, and estimates are limited to patterns
 learned from historical 2019 observations.
 
+Phase 11 implements a 78-test system and integration suite covering all six
+testing areas specified in the roadmap. Tests are in
+`tests/test_phase11_system.py` and can be run with:
+
+```powershell
+python -m pytest tests/test_phase11_system.py -v
+```
+
+The suite validates valid inputs, missing/blank inputs (11 rejection cases),
+unseen categories (5 robustness cases), boundary values (duration 15–2400 min,
+hours 0–23.9, dates Jan 1 and Dec 31, up to 4 stops), different routes
+(nonstop, 1-stop, 2-stop, 3-stop, and 5 city-pair combinations), and monthly
+booking-window variation (Month_Sin/Cos for all 12 months, season labels, and
+weekend indicator). Route-consistency helpers and the feature engineering output
+contract are also verified.
+
 ------------------------------------------------------------------------
 
 # 🧹 Data Cleaning
@@ -1338,7 +1354,7 @@ Potential future improvements:
 -   [x] Global SHAP explanation completed
 -   [x] Individual SHAP explanation completed
 -   [x] Interactive estimator completed
--   [ ] Testing completed
+-   [x] Testing completed
 -   [ ] Final report completed
 -   [ ] GitHub repository completed
 -   [ ] LinkedIn submission completed
@@ -1403,7 +1419,7 @@ B.Tech Computer Science Engineering --- Data Science
 
 # ⭐ Project Status
 
-**Status:** 🚧 In Development — Phases 1–5 complete
+**Status:** 🚧 In Development — Phases 1–11 complete
 
 Phases 6–12 (feature engineering, modeling, evaluation, explainability,
 application, testing, and final submission) remain in progress.
