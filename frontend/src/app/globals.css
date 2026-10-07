@@ -1,0 +1,1563 @@
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      background: #f6f8fc;
+      color: #172033;
+
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .blue {
+      color: #155eef;
+    }
+
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    .navbar {
+      height: 74px;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      z-index: 999;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 5%;
+
+      background: rgba(255, 255, 255, 0.86);
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      border-bottom: 1px solid rgba(20, 30, 50, 0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 21px;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-icon {
+      width: 37px;
+      height: 37px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 11px;
+
+      background: #155eef;
+      color: white;
+
+      transform: rotate(-8deg);
+
+      box-shadow: 0 8px 20px rgba(21, 94, 239, 0.25);
+    }
+
+    .logo-icon svg {
+      transform: rotate(8deg);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+
+      color: #667085;
+
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .nav-links a {
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #155eef;
+    }
+
+    .nav-button {
+      padding: 11px 17px;
+
+      border-radius: 10px;
+
+      background: #172033;
+      color: white;
+
+      font-size: 13px;
+      font-weight: 750;
+
+      transition: 0.25s ease;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-2px);
+      background: #155eef;
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      min-height: 760px;
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      padding-top: 100px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 82% 35%,
+          rgba(21, 94, 239, 0.15),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(84, 150, 255, 0.08),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #f5f8ff 100%
+        );
+    }
+
+    .hero-grid {
+      width: min(1180px, 92%);
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+
+      align-items: center;
+
+      gap: 50px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 13px;
+
+      border-radius: 30px;
+
+      background: #edf4ff;
+      color: #155eef;
+
+      font-size: 11px;
+      font-weight: 850;
+
+      letter-spacing: 0.11em;
+
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #155eef;
+
+      animation: pulse 1.8s infinite;
+    }
+
+    .hero h1 {
+      margin-top: 25px;
+
+      font-size: clamp(52px, 6vw, 84px);
+
+      line-height: 0.95;
+
+      letter-spacing: -0.065em;
+
+      color: #101828;
+
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #155eef;
+    }
+
+    .hero-description {
+      max-width: 590px;
+
+      margin-top: 28px;
+
+      color: #667085;
+
+      font-size: 18px;
+
+      line-height: 1.7;
+
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      margin-top: 32px;
+
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 15px 21px;
+
+      border: none;
+      border-radius: 11px;
+
+      background: #155eef;
+      color: white;
+
+      font-weight: 800;
+
+      box-shadow:
+        0 15px 35px rgba(21, 94, 239, 0.22);
+
+      transition: 0.25s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 20px 45px rgba(21, 94, 239, 0.3);
+    }
+
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 14px 20px;
+
+      border: 1px solid #dce2ec;
+      border-radius: 11px;
+
+      background: white;
+
+      color: #344054;
+
+      font-weight: 750;
+
+      transition: 0.25s ease;
+    }
+
+    .secondary-btn:hover {
+      color: #155eef;
+      border-color: #155eef;
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================================
+       HERO FLIGHT ANIMATION
+    ========================================================= */
+
+    .flight-scene {
+      height: 430px;
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glow {
+      position: absolute;
+
+      border-radius: 50%;
+
+      filter: blur(30px);
+
+      pointer-events: none;
+    }
+
+    .glow-1 {
+      width: 250px;
+      height: 250px;
+
+      background: rgba(21, 94, 239, 0.11);
+
+      animation: breathe 5s infinite;
+    }
+
+    .glow-2 {
+      width: 160px;
+      height: 160px;
+
+      background: rgba(71, 137, 255, 0.09);
+
+      animation: breathe 4s 1s infinite;
+    }
+
+    .route-ring {
+      width: 410px;
+      height: 210px;
+
+      position: absolute;
+
+      border: 1px dashed #b8cae9;
+
+      border-radius: 50%;
+
+      transform: rotate(-18deg);
+
+      animation: orbit 12s linear infinite;
+    }
+
+    .route-ring::before,
+    .route-ring::after {
+      content: "";
+
+      width: 9px;
+      height: 9px;
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      background: #155eef;
+
+      box-shadow: 0 0 0 7px rgba(21, 94, 239, 0.09);
+    }
+
+    .route-ring::before {
+      left: 30px;
+      top: 12px;
+    }
+
+    .route-ring::after {
+      right: 30px;
+      bottom: 12px;
+    }
+
+    .flight-plane {
+      width: 90px;
+      height: 90px;
+
+      position: relative;
+      z-index: 5;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: white;
+
+      color: #155eef;
+
+      box-shadow:
+        0 25px 70px rgba(20, 60, 120, 0.16),
+        0 0 0 16px rgba(21, 94, 239, 0.035);
+
+      animation:
+        planeFloat 4s ease-in-out infinite,
+        planeRotate 5s ease-in-out infinite;
+    }
+
+    .flight-plane svg {
+      width: 43px;
+      height: 43px;
+    }
+
+    .airport {
+      position: absolute;
+
+      z-index: 6;
+
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .airport-code {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+
+    .airport-name {
+      color: #98a2b3;
+
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .airport-left {
+      left: 8%;
+      top: 30%;
+    }
+
+    .airport-right {
+      right: 8%;
+      bottom: 25%;
+      text-align: right;
+    }
+
+    .floating-card {
+      position: absolute;
+
+      padding: 13px 16px;
+
+      border: 1px solid rgba(255, 255, 255, 0.8);
+
+      border-radius: 13px;
+
+      background: rgba(255, 255, 255, 0.82);
+
+      backdrop-filter: blur(15px);
+
+      box-shadow: 0 20px 50px rgba(20, 40, 80, 0.1);
+
+      animation: cardFloat 4s ease-in-out infinite;
+    }
+
+    .floating-card small {
+      display: block;
+
+      color: #98a2b3;
+
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .floating-card strong {
+      display: block;
+
+      margin-top: 3px;
+
+      font-size: 17px;
+    }
+
+    .floating-price {
+      top: 8%;
+      right: 2%;
+    }
+
+    .floating-ai {
+      bottom: 6%;
+      left: 5%;
+    }
+
+
+    /* =========================================================
+       SECTION HEADERS
+    ========================================================= */
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      color: #155eef;
+
+      font-size: 11px;
+      font-weight: 850;
+
+      letter-spacing: 0.12em;
+    }
+
+    .section-title {
+      margin-top: 13px;
+
+      color: #101828;
+
+      font-size: clamp(35px, 4vw, 55px);
+
+      line-height: 1.03;
+
+      letter-spacing: -0.05em;
+    }
+
+    .section-description {
+      margin-top: 16px;
+
+      max-width: 650px;
+
+      color: #667085;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       PREDICTOR
+    ========================================================= */
+
+    .predictor-section {
+      background: #f7f9fc;
+    }
+
+    .predictor-card {
+      margin-top: 38px;
+
+      padding: 25px;
+
+      border: 1px solid #e4e9f1;
+
+      border-radius: 20px;
+
+      background: white;
+
+      box-shadow:
+        0 25px 70px rgba(20, 30, 50, 0.065);
+    }
+
+    .search-grid {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr
+        1fr
+        1fr
+        0.8fr
+        1fr;
+
+      gap: 12px;
+    }
+
+    .field {
+      min-height: 67px;
+
+      padding: 11px 13px;
+
+      border: 1px solid #e5eaf1;
+
+      border-radius: 11px;
+
+      background: #f9fafc;
+
+      transition: 0.2s ease;
+    }
+
+    .field:focus-within {
+      border-color: #155eef;
+
+      background: white;
+
+      box-shadow:
+        0 0 0 3px rgba(21, 94, 239, 0.07);
+    }
+
+    .field label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      color: #98a2b3;
+
+      font-size: 9px;
+      font-weight: 850;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+    }
+
+    .field select,
+    .field input {
+      width: 100%;
+
+      margin-top: 7px;
+
+      border: none;
+      outline: none;
+
+      background: transparent;
+
+      color: #172033;
+
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .predict-btn {
+      min-height: 67px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      border: none;
+      border-radius: 11px;
+
+      background: #155eef;
+
+      color: white;
+
+      font-weight: 800;
+
+      box-shadow:
+        0 12px 25px rgba(21, 94, 239, 0.18);
+
+      transition: 0.25s ease;
+    }
+
+    .predict-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .predict-btn.loading {
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 17px;
+      height: 17px;
+
+      border: 2px solid rgba(255,255,255,0.35);
+      border-top-color: white;
+
+      border-radius: 50%;
+
+      animation: spin 0.7s linear infinite;
+    }
+
+
+    /* =========================================================
+       PREDICTION RESULT
+    ========================================================= */
+
+    .prediction-result {
+      display: none;
+
+      margin-top: 20px;
+
+      padding: 30px;
+
+      border-radius: 17px;
+
+      background: #101828;
+
+      color: white;
+
+      animation: resultReveal 0.7s ease both;
+    }
+
+    .prediction-result.visible {
+      display: block;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .result-label {
+      color: #98a2b3;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .result-price {
+      margin-top: 4px;
+
+      font-size: 51px;
+
+      font-weight: 900;
+
+      letter-spacing: -0.055em;
+    }
+
+    .result-range {
+      color: #98a2b3;
+
+      font-size: 12px;
+    }
+
+    .confidence {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 11px 14px;
+
+      border-radius: 10px;
+
+      background: rgba(255,255,255,0.07);
+
+      font-size: 12px;
+    }
+
+    .confidence strong {
+      font-size: 18px;
+    }
+
+    .result-route {
+      margin-top: 35px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 25px;
+    }
+
+    .result-airport {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .result-airport strong {
+      font-size: 29px;
+    }
+
+    .result-airport span {
+      color: #98a2b3;
+      font-size: 11px;
+    }
+
+    .result-line {
+      width: 170px;
+
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .result-line span {
+      flex: 1;
+      height: 1px;
+
+      background: #344054;
+    }
+
+    .result-line svg {
+      color: #4c8dff;
+    }
+
+
+    /* =========================================================
+       AI EXPLANATION
+    ========================================================= */
+
+    .ai-section {
+      background: white;
+    }
+
+    .ai-grid {
+      display: grid;
+
+      grid-template-columns: 0.9fr 1.1fr;
+
+      align-items: center;
+
+      gap: 90px;
+    }
+
+    .ai-visual {
+      height: 440px;
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .orbit {
+      position: absolute;
+
+      border: 1px solid #dce5f5;
+
+      border-radius: 50%;
+    }
+
+    .orbit-1 {
+      width: 320px;
+      height: 190px;
+
+      transform: rotate(25deg);
+
+      animation: rotateSlow 18s linear infinite;
+    }
+
+    .orbit-2 {
+      width: 230px;
+      height: 330px;
+
+      transform: rotate(-30deg);
+
+      animation: rotateReverse 14s linear infinite;
+    }
+
+    .orbit-3 {
+      width: 370px;
+      height: 370px;
+
+      border-style: dashed;
+
+      animation: rotateSlow 25s linear infinite;
+    }
+
+    .ai-core {
+      width: 135px;
+      height: 135px;
+
+      position: relative;
+      z-index: 4;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: white;
+
+      color: #155eef;
+
+      box-shadow:
+        0 30px 80px rgba(21, 94, 239, 0.13),
+        0 0 0 15px #f5f8ff;
+    }
+
+    .ai-core strong {
+      margin-top: 7px;
+
+      font-size: 13px;
+
+      letter-spacing: 0.13em;
+    }
+
+    .ai-content h2 span {
+      color: #155eef;
+    }
+
+    .ai-content > p {
+      max-width: 600px;
+
+      margin-top: 20px;
+
+      color: #667085;
+
+      line-height: 1.75;
+    }
+
+    .features {
+      margin-top: 35px;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: 21px;
+    }
+
+    .feature {
+      display: flex;
+
+      gap: 14px;
+    }
+
+    .feature-icon {
+      width: 43px;
+      height: 43px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 11px;
+
+      background: #edf4ff;
+
+      color: #155eef;
+    }
+
+    .feature strong {
+      font-size: 14px;
+    }
+
+    .feature p {
+      margin-top: 4px;
+
+      color: #667085;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       ANALYTICS
+    ========================================================= */
+
+    .analytics-section {
+      background: #f7f9fc;
+    }
+
+    .analytics-heading {
+      text-align: center;
+    }
+
+    .analytics-heading .section-description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stats {
+      margin-top: 48px;
+
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 15px;
+    }
+
+    .stat-card {
+      min-height: 220px;
+
+      padding: 27px;
+
+      border: 1px solid #e4e9f1;
+
+      border-radius: 16px;
+
+      background: white;
+
+      transition: 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-6px);
+
+      box-shadow:
+        0 25px 50px rgba(20, 30, 50, 0.08);
+    }
+
+    .stat-value {
+      font-size: 42px;
+
+      font-weight: 900;
+
+      letter-spacing: -0.05em;
+
+      color: #155eef;
+    }
+
+    .stat-card h3 {
+      margin-top: 18px;
+
+      font-size: 16px;
+    }
+
+    .stat-card p {
+      margin-top: 8px;
+
+      color: #667085;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       ROUTES
+    ========================================================= */
+
+    .routes-section {
+      background: white;
+    }
+
+    .routes-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .outline-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 11px 15px;
+
+      border: 1px solid #dce2ec;
+
+      border-radius: 10px;
+
+      background: white;
+
+      color: #344054;
+
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .outline-button:hover {
+      color: #155eef;
+      border-color: #155eef;
+    }
+
+    .routes-grid {
+      margin-top: 38px;
+
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 15px;
+    }
+
+    .route-card {
+      padding: 23px;
+
+      border: 1px solid #e4e9f1;
+
+      border-radius: 16px;
+
+      background: #fbfcfe;
+
+      transition: 0.3s ease;
+    }
+
+    .route-card:hover {
+      transform: translateY(-5px);
+
+      box-shadow:
+        0 20px 45px rgba(20, 30, 50, 0.07);
+    }
+
+    .route-airports {
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+    }
+
+    .route-code {
+      font-size: 22px;
+
+      font-weight: 900;
+    }
+
+    .mini-route {
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+
+      gap: 5px;
+
+      color: #155eef;
+    }
+
+    .mini-route span {
+      flex: 1;
+
+      height: 1px;
+
+      background: #d0d5dd;
+    }
+
+    .route-bottom {
+      margin-top: 35px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .route-bottom small {
+      color: #98a2b3;
+      font-size: 10px;
+    }
+
+    .route-price {
+      font-size: 17px;
+      font-weight: 850;
+    }
+
+
+    /* =========================================================
+       MODEL
+    ========================================================= */
+
+    .model-section {
+      background: #f7f9fc;
+    }
+
+    .model-card {
+      padding: 55px;
+
+      display: grid;
+
+      grid-template-columns: 1fr 0.8fr;
+
+      align-items: center;
+
+      gap: 70px;
+
+      border-radius: 22px;
+
+      background: #101828;
+
+      color: white;
+    }
+
+    .model-card .section-title {
+      color: white;
+    }
+
+    .model-card .section-description {
+      color: #98a2b3;
+    }
+
+    .model-metrics {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 10px;
+    }
+
+    .metric {
+      padding: 20px;
+
+      border-radius: 13px;
+
+      background: rgba(255,255,255,0.06);
+    }
+
+    .metric span {
+      display: block;
+
+      color: #98a2b3;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .metric strong {
+      display: block;
+
+      margin-top: 7px;
+
+      font-size: 23px;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      min-height: 110px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 30px 5%;
+
+      border-top: 1px solid #e5eaf1;
+
+      background: white;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .footer-brand-text strong {
+      font-size: 15px;
+    }
+
+    .footer-brand-text span {
+      color: #98a2b3;
+      font-size: 10px;
+    }
+
+    .footer-description {
+      color: #98a2b3;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================= */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.7);
+        opacity: 0.4;
+      }
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes planeFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(10deg);
+      }
+
+      50% {
+        transform: translateY(-13px) rotate(14deg);
+      }
+    }
+
+    @keyframes planeRotate {
+      0%, 100% {
+        margin-left: -5px;
+      }
+
+      50% {
+        margin-left: 10px;
+      }
+    }
+
+    @keyframes orbit {
+      from {
+        transform: rotate(-18deg) rotate(0deg);
+      }
+
+      to {
+        transform: rotate(-18deg) rotate(360deg);
+      }
+    }
+
+    @keyframes cardFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-9px);
+      }
+    }
+
+    @keyframes rotateSlow {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotateReverse {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes resultReveal {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 1050px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-bottom: 80px;
+      }
+
+      .flight-scene {
+        height: 350px;
+      }
+
+      .search-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .ai-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-visual {
+        height: 350px;
+      }
+
+      .stats,
+      .routes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .model-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    @media (max-width: 700px) {
+
+      .navbar {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-button {
+        padding: 10px 13px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 130px;
+        padding-bottom: 60px;
+      }
+
+      .hero-grid {
+        width: 90%;
+      }
+
+      .hero h1 {
+        font-size: 53px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        justify-content: center;
+      }
+
+      .flight-scene {
+        height: 290px;
+      }
+
+      .route-ring {
+        width: 330px;
+        height: 175px;
+      }
+
+      .airport-left {
+        left: 0;
+      }
+
+      .airport-right {
+        right: 0;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .predictor-card {
+        padding: 15px;
+      }
+
+      .search-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-header {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .result-route {
+        gap: 10px;
+      }
+
+      .result-line {
+        width: 70px;
+      }
+
+      .stats,
+      .routes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .routes-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .model-card {
+        padding: 30px 22px;
+      }
+
+      .model-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+    }
+
+  

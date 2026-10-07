@@ -1,0 +1,353 @@
+/* ==========================================================================
+   AIRLYTICS DESIGN SYSTEM
+   Futuristic Aviation + AI + Data Analytics Intelligence Platform
+   ========================================================================== */
+
+/* --- 1. CSS VARIABLES & COLOR SYSTEM --- */
+:root {
+  --color-primary: #0284c7;
+  --color-primary-hover: #0369a1;
+  --color-accent: #38bdf8;
+  --color-accent-subtle: rgba(56, 189, 248, 0.12);
+  
+  --color-bg-canvas: #0b0f19;
+  --color-surface: #111827;
+  --color-surface-secondary: #1e293b;
+  --color-surface-hover: #243248;
+  
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-muted: #94a3b8;
+  
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(56, 189, 248, 0.35);
+  
+  --color-success: #10b981;
+  --color-success-bg: rgba(16, 185, 129, 0.12);
+  --color-warning: #f59e0b;
+  --color-warning-bg: rgba(245, 158, 11, 0.12);
+  --color-error: #ef4444;
+  --color-error-bg: rgba(239, 68, 68, 0.12);
+  --color-info: #0ea5e9;
+  --color-info-bg: rgba(14, 165, 233, 0.12);
+
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono: "JetBrains Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+/* --- 2. GLOBAL RESET & BASE TYPOGRAPHY --- */
+body, [data-testid="stAppViewContainer"] {
+  background-color: var(--color-bg-canvas) !important;
+  color: var(--color-text-primary) !important;
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-testid="stSidebar"] {
+  background-color: var(--color-surface) !important;
+  border-right: 1px solid var(--color-border) !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em;
+}
+
+/* --- 3. HEADER & STATUS BAR --- */
+.airlytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.airlytics-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.airlytics-brand-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.airlytics-brand-tagline {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.airlytics-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--color-accent-subtle);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.airlytics-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent);
+}
+
+/* --- 4. CARDS & CONTAINERS --- */
+.airlytics-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.airlytics-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.airlytics-card-header {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.airlytics-card-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* Metric / KPI Cards */
+.airlytics-metric-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-card);
+  border-left: 3px solid var(--color-primary);
+}
+
+.airlytics-metric-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  margin-bottom: 6px;
+}
+
+.airlytics-metric-value {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
+  letter-spacing: -0.02em;
+}
+
+.airlytics-metric-subtext {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+/* Result / Prediction Card */
+.airlytics-result-card {
+  background: linear-gradient(145deg, #111827 0%, #1e293b 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin: 20px 0;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+/* --- 5. ALERTS & CALLOUTS --- */
+.airlytics-alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 1.5;
+}
+
+.airlytics-alert-info {
+  background: var(--color-info-bg);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  color: var(--color-text-primary);
+}
+
+.airlytics-alert-warning {
+  background: var(--color-warning-bg);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--color-text-primary);
+}
+
+.airlytics-alert-success {
+  background: var(--color-success-bg);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* Empty State */
+.airlytics-empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  margin: 20px 0;
+}
+
+.airlytics-empty-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.airlytics-empty-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* --- 6. NAVIGATION STYLING --- */
+.airlytics-nav-container {
+  margin-bottom: 24px;
+}
+
+.airlytics-nav-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  padding: 0 8px 10px 8px;
+}
+
+/* Custom radio navigation items */
+[data-testid="stSidebar"] [data-testid="stRadio"] > div {
+  gap: 6px;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadio"] label {
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary) !important;
+  border-color: var(--color-border);
+}
+
+/* --- 7. BUTTON STYLES --- */
+button[kind="primary"], .stButton > button {
+  background-color: var(--color-primary) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+  padding: 0.5rem 1rem !important;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+button[kind="primary"]:hover, .stButton > button:hover {
+  background-color: var(--color-primary-hover) !important;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.4) !important;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* --- 8. INPUTS & CONTROLS --- */
+[data-testid="stSelectbox"] > div > div,
+[data-testid="stTextInput"] > div > div,
+[data-testid="stNumberInput"] > div > div {
+  background-color: var(--color-surface-secondary) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--color-text-primary) !important;
+}
+
+[data-testid="stSelectbox"] > div > div:focus-within,
+[data-testid="stTextInput"] > div > div:focus-within {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 1px var(--color-accent) !important;
+}
+
+/* --- 9. FOOTER --- */
+.airlytics-footer {
+  margin-top: 48px;
+  padding: 24px 0 16px 0;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.airlytics-footer a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.airlytics-footer a:hover {
+  text-decoration: underline;
+}
+
+/* --- 10. RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 768px) {
+  .airlytics-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .airlytics-card {
+    padding: 16px;
+  }
+  
+  .airlytics-metric-value {
+    font-size: 1.35rem;
+  }
+}
