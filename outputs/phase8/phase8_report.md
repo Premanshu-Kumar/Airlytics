@@ -24,6 +24,8 @@ Errors are in dataset fare source units; the source does not specify currency.
 | Model (ranked by CV MAE) | CV MAE (mean ± SD) | Holdout MAE | Holdout RMSE | Holdout R² |
 |---|---:|---:|---:|---:|
 | Random Forest | 673.06 ± 19.45 | 640.33 | 1,430.08 | 0.9019 |
+| Decision Tree | 820.63 ± 12.30 | 768.45 | 1,897.59 | 0.8273 |
+| Gradient Boosting | 839.01 ± 13.97 | 824.74 | 1,527.10 | 0.8882 |
 | XGBoost | 846.12 ± 18.44 | 842.43 | 1,498.44 | 0.8923 |
 | Linear Regression | 1,526.54 ± 28.26 | 1,514.45 | 2,367.78 | 0.7311 |
 
