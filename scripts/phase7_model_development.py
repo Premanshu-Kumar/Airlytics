@@ -9,12 +9,13 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.tree import DecisionTreeRegressor
 
 if __package__:
     from .phase6_feature_engineering import FEATURE_COLUMNS, TARGET_COLUMN
@@ -63,6 +64,13 @@ def model_candidates() -> dict[str, Pipeline]:
 
     return {
         "Linear Regression": make_pipeline(LinearRegression()),
+        "Decision Tree": make_pipeline(
+            DecisionTreeRegressor(
+                max_depth=20,
+                min_samples_leaf=3,
+                random_state=RANDOM_STATE,
+            )
+        ),
         "Random Forest": make_pipeline(
             RandomForestRegressor(
                 n_estimators=180,
@@ -70,6 +78,15 @@ def model_candidates() -> dict[str, Pipeline]:
                 min_samples_leaf=2,
                 max_features=0.8,
                 n_jobs=-1,
+                random_state=RANDOM_STATE,
+            )
+        ),
+        "Gradient Boosting": make_pipeline(
+            GradientBoostingRegressor(
+                n_estimators=200,
+                max_depth=6,
+                learning_rate=0.08,
+                subsample=0.85,
                 random_state=RANDOM_STATE,
             )
         ),

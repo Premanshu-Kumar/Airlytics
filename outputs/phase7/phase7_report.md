@@ -14,6 +14,8 @@ categories are handled by the fitted one-hot encoder.
 | Model | MAE (source units) | RMSE (source units) | R² |
 |---|---:|---:|---:|
 | Random Forest | 640.33 | 1,430.08 | 0.9019 |
+| Decision Tree | 768.45 | 1,897.59 | 0.8273 |
+| Gradient Boosting | 824.74 | 1,527.10 | 0.8882 |
 | XGBoost | 842.43 | 1,498.44 | 0.8923 |
 | Linear Regression | 1,514.45 | 2,367.78 | 0.7311 |
 
