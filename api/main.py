@@ -95,6 +95,8 @@ class PredictResponse(BaseModel):
     holdout_mae: float
     holdout_r2: float
     inputs_summary: dict[str, Any]
+    market_adjusted_fare: float | None = None
+    inflation_factor: float | None = 1.68
 
 
 class ShapFeatureContribution(BaseModel):
@@ -212,6 +214,8 @@ def predict(req: PredictRequest):
         model_name=art.get("model_name", "Random Forest"),
         holdout_mae=mae,
         holdout_r2=0.9019,
+        market_adjusted_fare=round(fare * 1.68, 2),
+        inflation_factor=1.68,
         inputs_summary={
             "airline": req.airline,
             "route": req.route,
