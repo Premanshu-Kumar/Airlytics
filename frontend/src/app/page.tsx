@@ -22,27 +22,58 @@ export default function Page() {
 
 
     function getAirportCode(city) {
-
       const codes = {
-
         "Delhi": "DEL",
-
         "Mumbai": "BOM",
-
         "Banglore": "BLR",
-
+        "Bangalore": "BLR",
         "Chennai": "MAA",
-
         "Kolkata": "CCU",
-
         "Cochin": "COK",
-
-        "Hyderabad": "HYD"
-
+        "Hyderabad": "HYD",
+        "Amritsar": "ATQ",
+        "Goa": "GOI",
+        "Pune": "PNQ",
+        "Jaipur": "JAI",
+        "Ahmedabad": "AMD",
+        "Lucknow": "LKO",
+        "Varanasi": "VNS",
+        "Guwahati": "GAU",
+        "Patna": "PAT",
+        "Bhubaneswar": "BBI",
+        "Chandigarh": "IXC",
+        "Srinagar": "SXR"
       };
+      return codes[city] || (city ? city.substring(0, 3).toUpperCase() : "DEL");
+    }
 
-      return codes[city] || city.substring(0, 3).toUpperCase();
+    function getOtaBookingUrl(otaName, fromCity, toCity, dateStr, airlineName) {
+      const fromCode = getAirportCode(fromCity);
+      const toCode = getAirportCode(toCity);
 
+      let dateObj = dateStr ? new Date(dateStr) : new Date(Date.now() + 86400000);
+      if (isNaN(dateObj.getTime())) {
+        dateObj = new Date(Date.now() + 86400000);
+      }
+      const dd = String(dateObj.getDate()).padStart(2, "0");
+      const mm = String(dateObj.getMonth() + 1).padStart(2, "0");
+      const yyyy = dateObj.getFullYear();
+      const yy = String(yyyy).slice(-2);
+      const ddmmyyyy = `${dd}/${mm}/${yyyy}`;
+      const yymmdd = `${yy}${mm}${dd}`;
+
+      switch (otaName) {
+        case "EaseMyTrip":
+          return `https://flight.easemytrip.com/FlightList/Index?srch=${fromCode}-${toCode}-${ddmmyyyy}&px=1-0-0&c=0`;
+        case "MakeMyTrip":
+          return `https://www.makemytrip.com/flight/search?itinerary=${fromCode}-${toCode}-${ddmmyyyy}&tripType=O&paxType=A-1_C-0_I-0&intl=false&cabinClass=E`;
+        case "Skyscanner":
+          return `https://www.skyscanner.co.in/transport/flights/${fromCode.toLowerCase()}/${toCode.toLowerCase()}/${yymmdd}/?adultsv2=1&cabinclass=economy`;
+        case "Cleartrip":
+          return `https://www.cleartrip.com/flights/results?from=${fromCode}&to=${toCode}&depart_date=${ddmmyyyy}&adults=1&childs=0&infants=0&class=Economy`;
+        default:
+          return `https://www.google.com/travel/flights?q=flights+from+${fromCode}+to+${toCode}+on+${yyyy}-${mm}-${dd}`;
+      }
     }
 
 
@@ -227,7 +258,8 @@ export default function Page() {
       const otaHtml = otas.map((ota, i) => {
         const diff = (i - 1.5) * 180 + (Math.random() * 80 - 40);
         const otaPrice = Math.round((price + diff) / 10) * 10;
-        const isCheapest = i === 1; // Let's make EaseMyTrip or someone cheapest for demo
+        const isCheapest = i === 1; // Let's make EaseMyTrip cheapest
+        const bookingUrl = getOtaBookingUrl(ota, from, to, date, airline);
         return `
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; transition: 0.2s;">
             <div>
@@ -236,7 +268,7 @@ export default function Page() {
             </div>
             <div style="display: flex; align-items: center; gap: 15px;">
               <strong style="font-size: 18px;">₹${otaPrice.toLocaleString("en-IN")}</strong>
-              <button style="padding: 8px 16px; background: white; color: #101828; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='white'">Book</button>
+              <a href="${bookingUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; padding: 8px 16px; background: white; color: #101828; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px; display: inline-block; transition: 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='white'">Book</a>
             </div>
           </div>
         `;
