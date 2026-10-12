@@ -56,19 +56,6 @@ Interactive Fare Estimator
 
 ------------------------------------------------------------------------
 
-# 🎓 Academic Task Alignment
-
-**University:** Lovely Professional University\
-**Course:** Predictive Analytics\
-**Course Code:** INT234\
-**Academic Task:** 2\
-**Task Type:** Skill-based Assignment\
-**Maximum Marks:** 100\
-**Submission Date:** 31 October 2026
-
-### Requirements Covered
-
-  -----------------------------------------------------------------------
   Assignment Requirement              Airlytics
   ----------------------------------- -----------------------------------
   Machine Learning / Deep Learning    ✅ Supervised ML Regression
