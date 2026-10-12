@@ -30,29 +30,63 @@ It also answers an important question:
 Airlytics therefore goes beyond a basic flight-price prediction notebook
 and implements a complete Predictive Analytics workflow:
 
-``` text
-Real-World Problem
-       ↓
-Data Collection
-       ↓
-Data Cleaning
-       ↓
-EDA & Visualization
-       ↓
-Statistical Analysis
-       ↓
-Feature Engineering
-       ↓
-Machine Learning
-       ↓
-Model Comparison
-       ↓
-Evaluation
-       ↓
-Explainable AI
-       ↓
-Interactive Fare Estimator
+```mermaid
+flowchart TD
+    A[Real-World Problem\nConsumer Airfare Estimation] --> B[Data Collection\nHistorical 2019 Dataset: 10,683 rows]
+    B --> C[Data Cleaning & Validation\n10,462 Valid Rows]
+    C --> D[EDA & Data Visualization\nUnivariate, Bivariate & Multivariate]
+    D --> E[Statistical Analysis\nCorrelation & Descriptive Analytics]
+    E --> F[Feature Engineering\nCyclical Encodings & Routes]
+    F --> G[Machine Learning\n5 Regression Candidate Models]
+    G --> H[Model Comparison & Evaluation\n5-Fold CV: Random Forest R² = 0.9019]
+    H --> I[Explainable AI\nGlobal & Local Tree SHAP Analysis]
+    I --> J[Interactive Application\nStreamlit & Next.js Estimator]
 ```
+
+------------------------------------------------------------------------
+
+# 📊 Key Analytical & Machine Learning Visualizations
+
+Airlytics incorporates comprehensive visual analytics across all phases, from initial exploratory data analysis to model validation and explainable AI. Below are the 5 foundational project graphs:
+
+### 1. Airfare Distribution & Outlier Spread (Phase 4: Univariate Analysis)
+![Airfare Distribution](outputs/phase1_5/price_distribution.png)
+* **Objective:** Understand target distribution, skewness, and extreme values across 10,462 cleaned records.
+* **Key Finding:** Airfares exhibit right (positive) skewness with clusters around budget economy brackets. Using 1.5×IQR fences, 94 valid high-fare observations were identified and retained (primarily premium flights/dates).
+* **Reference:** [`outputs/phase1_5/phase1_5_report.md`](outputs/phase1_5/phase1_5_report.md)
+
+---
+
+### 2. Airfare Variation Across Airlines (Phase 4: Bivariate Categorical Analysis)
+![Airfare by Airline](outputs/phase1_5/price_by_airline.png)
+* **Objective:** Evaluate pricing variance between low-cost carriers and premium/full-service airlines.
+* **Key Finding:** Low-cost carriers (e.g., SpiceJet, IndiGo) show lower median fares with tight interquartile ranges, while full-service airlines (e.g., Jet Airways, Air India) and premium tiers (Jet Airways Business) display substantial price dispersion and higher fare ceilings.
+* **Reference:** [`outputs/phase1_5/phase1_5_report.md`](outputs/phase1_5/phase1_5_report.md)
+
+---
+
+### 3. Flight Duration vs. Price by Stops (Phase 4: Multivariate Interaction)
+![Flight Duration vs Price by Stops](outputs/phase1_5/fare_duration_stops.png)
+* **Objective:** Analyze how flight duration interacts with number of layovers to impact the final airfare.
+* **Key Finding:** Direct non-stop flights cluster at lower duration (under ~300 minutes) and more predictable base prices. Itineraries with 1 or 2+ stops show broader dispersion and elevated fares due to connecting route overheads.
+* **Reference:** [`outputs/phase1_5/phase1_5_report.md`](outputs/phase1_5/phase1_5_report.md)
+
+---
+
+### 4. Actual vs. Predicted Airfare (Phase 8: Model Evaluation & Holdout Diagnostics)
+![Actual vs Predicted Airfare](outputs/phase8/actual_vs_predicted.png)
+* **Objective:** Diagnostic evaluation of the selected **Random Forest** regressor against unseen held-out test data.
+* **Performance:** Holdout **$R^2 = 0.9019$**, **MAE = 640.33**, **RMSE = 1,430.08** (outperforming XGBoost, Gradient Boosting, Decision Trees, and Linear Regression).
+* **Key Finding:** Predictions align closely along the $45^\circ$ diagonal identity line, demonstrating high predictive stability across the fare spectrum without severe heteroscedasticity.
+* **Reference:** [`outputs/phase8/phase8_report.md`](outputs/phase8/phase8_report.md)
+
+---
+
+### 5. Global Feature Explainability via SHAP (Phase 9: Explainable AI)
+![SHAP Global Summary](outputs/phase9/shap_global_summary.png)
+* **Objective:** Provide interpretable machine learning by decomposing feature contributions using Tree SHAP.
+* **Key Finding:** `Duration_Minutes` (mean absolute SHAP: 1,743.46) and `Airline` (mean absolute SHAP: 1,461.01) are the strongest drivers of fare estimation, followed by `Additional_Info`, `Journey_Day`, and route stops.
+* **Reference:** [`outputs/phase9/phase9_report.md`](outputs/phase9/phase9_report.md)
 
 ------------------------------------------------------------------------
 
