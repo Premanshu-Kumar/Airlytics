@@ -1,6 +1,6 @@
 # 📋 Airlytics Project Requirements Compliance & Status Report
 
-**Project Name:** Airlytics — Intelligent Airfare Price Estimation & Explainable Flight Analytics  
+**Project Name:** Airlytics — FlightIQ  
 **Date of Audit & Update:** October 11, 2026  
 **Audited Against:** Academic & Project Submission Requirements  
 

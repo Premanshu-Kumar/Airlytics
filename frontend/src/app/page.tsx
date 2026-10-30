@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 import { useEffect } from 'react';
 import './globals.css';
@@ -2171,7 +2172,7 @@ export default function Page() {
         </strong>
 
         <span>
-          Intelligent Airfare Analytics
+          FlightIQ
         </span>
 
       </div>

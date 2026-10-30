@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-              Intelligent Airfare Price Estimation &amp; Explainable Flight Analytics. Designed for reliable price discovery and algorithmic transparency.
+              FlightIQ. Designed for reliable price discovery and algorithmic transparency.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
@@ -105,7 +105,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Credits */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© 2026 Airlytics • Intelligent Airfare Price Estimation. Built by Premanshu Kumar.</p>
+          <p>© 2026 Airlytics • FlightIQ. Built by Premanshu Kumar.</p>
           <div className="flex items-center gap-1">
             <span>Verified 93/93 Test Suite Passed</span>
             <span className="text-emerald-400">●</span>

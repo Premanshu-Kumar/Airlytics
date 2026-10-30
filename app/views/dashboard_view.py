@@ -8,7 +8,7 @@ import streamlit as st
 def render_dashboard_view() -> None:
     """Render the executive dashboard view."""
     st.title("Airlytics Dashboard")
-    st.caption("Intelligent airfare price estimation and flight analytics.")
+    st.caption("FlightIQ — Intelligent flight price estimation and analytics.")
 
     st.markdown(
         """

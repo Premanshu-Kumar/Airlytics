@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Airlytics — Intelligent Airfare Price Estimation & Explainable Flight Analytics",
+  title: "Airlytics — FlightIQ",
   description:
     "AI-powered flight intelligence platform combining real-time Random Forest airfare prediction, Tree SHAP mathematical explainability, and domestic market price analytics.",
 };

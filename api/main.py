@@ -46,7 +46,7 @@ from app.services.shap_service import local_shap_contributions
 
 app = FastAPI(
     title="Airlytics API",
-    description="Intelligent Airfare Price Estimation & Explainable Flight Analytics API",
+    description="FlightIQ API",
     version="1.0.0",
 )
 

@@ -1,4 +1,4 @@
-"""Airlytics — Intelligent Airfare Price Estimation & Flight Analytics.
+"""Airlytics — FlightIQ.
 
 Run with:
     streamlit run app/app.py

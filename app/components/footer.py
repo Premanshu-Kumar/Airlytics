@@ -10,7 +10,7 @@ def render_footer() -> None:
     st.markdown(
         """
         <div class="airlytics-footer">
-            <strong>AIRLYTICS</strong> — Intelligent Airfare Price Estimation & Explainable Flight Analytics<br/>
+            <strong>AIRLYTICS</strong> — FlightIQ<br/>
             <span>Machine Learning • Explainability • Flight Analytics | LPU INT234 Academic Project</span>
         </div>
         """,

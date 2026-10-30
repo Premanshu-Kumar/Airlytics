@@ -1,6 +1,6 @@
 # ✈️ Airlytics
 
-### Intelligent Airfare Price Estimation & Explainable Flight Analytics
+### FlightIQ
 
 > **Airlytics** is an end-to-end Machine Learning project that estimates
 > airfare from route, airline, travel date, duration, stops,
@@ -827,7 +827,7 @@ The application can be implemented using **Streamlit**.
 ``` text
 ┌────────────────────────────────────────────────────┐
 │                    ✈️ AIRLYTICS                   │
-│        Intelligent Airfare Price Estimation       │
+│                      FlightIQ                      │
 ├────────────────────────────────────────────────────┤
 │                                                    │
 │ Airline          [ Select Airline ▼ ]             │
